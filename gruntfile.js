@@ -14,7 +14,9 @@ module.exports = function(grunt) {
             options: {
                 src: 'test/**/*.html',
                 dest: 'dist/templates.js',
-                className: "NoComponentTemplate"
+                className: "NoComponentTemplate",
+                moduleName: "noinfopath.form.builder",
+                valueName: "noComponentTemplates"
             }
         }
     },

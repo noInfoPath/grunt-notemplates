@@ -20,12 +20,15 @@ module.exports = function(grunt) {
    * |className|string|User defined class name for constructed class|
   */
 
-  function noTemplates(src, dest, className){
-       var nawFunctionStart = "function ",
+  function noTemplates(src, dest, className, moduleName, valueName){
+       var nawFunctionStart = "\t function ",
            nawFunctionMiddle = "() { \n",
-           nawFunctionEnd = "}",
+           nawFunctionEnd = "\t } \n",
            nawFinalTemplate = "",
-           nawFinalTemplates = "";
+           nawFinalTemplates = "",
+           nawSelfCallingStart = "(function() { \n",
+           nawSelfCallingEnd = "})(angular);",
+           nawModuleValue = "\t angular.module('" + moduleName + "').value(\"" + valueName + "\", new " + className + "()); \n";
 
        grunt.file.expand(src).forEach(function(dir){
 
@@ -46,11 +49,11 @@ module.exports = function(grunt) {
                    nawConcat = nawConcat + nawTrimmed;
            }
 
-           nawFinalTemplate = "\t" + "this." + nawTemplateName + " = " + "'" + nawConcat + "';";
+           nawFinalTemplate = "\t" + "\t" + "this." + nawTemplateName + " = " + "'" + nawConcat + "';";
            nawFinalTemplates = nawFinalTemplates + nawFinalTemplate + "\n";
        });
 
-       var nawImDoneWithThis = nawFunctionStart + className + nawFunctionMiddle + nawFinalTemplates + nawFunctionEnd;
+       var nawImDoneWithThis = nawSelfCallingStart + nawFunctionStart + className + nawFunctionMiddle + nawFinalTemplates + nawFunctionEnd + nawModuleValue + nawSelfCallingEnd;
 
     /*
      * Write contents(noImDoneWithThis) to the user's destination(dest)
@@ -69,6 +72,6 @@ module.exports = function(grunt) {
       /*
        * User specified Source(src), Destination(dest), Starting comment syntax(start), Starting @ syntax(tableofconents)
       */
-      noTemplates(options.src, options.dest, options.className);
+      noTemplates(options.src, options.dest, options.className, options.moduleName, options.valueName);
   });
 };
