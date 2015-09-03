@@ -1,7 +1,7 @@
 {
   "name": "grunt-notemplates",
   "description": "A way to loop through html file fragments to generate a template class",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "notemplates.js",
   "author": "The NoInfoPath Group, llc",
   "contributors": [

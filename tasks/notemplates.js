@@ -1,6 +1,6 @@
 /*
  * grunt-notemplates
- * @version 0.0.4
+ * @version 0.0.5
  *
  * Copyright (c) 2015 The NoInfoPath Group, llc.
  * Licensed under the MIT license.
