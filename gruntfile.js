@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     notemplates: {
         test: {
             options: {
-                src: 'test/*.html',
+                src: 'test/**/*.html',
                 dest: 'dist/templates.js',
                 className: "NoComponentTemplate"
             }

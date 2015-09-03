@@ -1,6 +1,6 @@
 /*
  * grunt-notemplates
- * @version 0.0.2
+ * @version 0.0.3
  *
  * Copyright (c) 2015 The NoInfoPath Group, llc.
  * Licensed under the MIT license.
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 
            nawTemplate = grunt.file.read(dir);
            nawMinifiedTemplate = nawTemplate.trim();
-           nawTemplateName = dir.substring( (dir.indexOf("/") + 1) , dir.lastIndexOf(".") );
+           nawTemplateName = dir.substring( (dir.lastIndexOf("/") + 1) , dir.lastIndexOf(".") );
            nawMinifiedTemplateSplit = nawMinifiedTemplate.split("\n");
 
            for(var l in nawMinifiedTemplateSplit){
