@@ -1,12 +1,21 @@
 {
   "name": "grunt-notemplates",
   "description": "A way to loop through html file fragments to generate a template class",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "notemplates.js",
   "author": {
-    "name": "Ryan Platt",
-    "email": "ryan@imginconline.com"
+    "name": "The NoInfoPath Group, llc"
   },
+  "contributors": [
+    {
+      "name": "Ryan Platt AKA Rye Guy",
+      "email": "ryan@imginconline.com"
+    },
+    {
+      "name": "Mat Varughese",
+      "email": "mat@imginconline.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/noInfoPath/grunt-notemplates.git"

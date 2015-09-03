@@ -1,6 +1,6 @@
 /*
  * grunt-notemplates
- * @version 0.0.1
+ * @version 0.0.2
  *
  * Copyright (c) 2015 The NoInfoPath Group, llc.
  * Licensed under the MIT license.
@@ -16,8 +16,8 @@ module.exports = function(grunt) {
    * |Name|Type|Description|
    * |----|----|-----------|
    * |src|string|User defined single file or glob|
-   * |dest|string||
-   * |dest|string|className|
+   * |dest|string|User defined destination path|
+   * |className|string|User defined class name for constructed class|
   */
 
   function noTemplates(src, dest, className){
@@ -34,23 +34,20 @@ module.exports = function(grunt) {
                nawMinifiedTemplateSplit = '',
                nawConcat = '',
                nawClassName = className,
-               nawTemplateName = ''
-               ;
+               nawTemplateName = '';
 
-           if(dir.slice(-4) === "html"){
-               nawTemplate = grunt.file.read(dir).toString();
-               nawMinifiedTemplate = nawTemplate.trim();
-               nawTemplateName = dir.substring((dir.indexOf("/") + 1),((dir.length) - 5));
-               nawMinifiedTemplateSplit = nawMinifiedTemplate.split("\n");
+           nawTemplate = grunt.file.read(dir);
+           nawMinifiedTemplate = nawTemplate.trim();
+           nawTemplateName = dir.substring( (dir.indexOf("/") + 1) , dir.lastIndexOf(".") );
+           nawMinifiedTemplateSplit = nawMinifiedTemplate.split("\n");
 
-               for(var l in nawMinifiedTemplateSplit){
-                   var trimmed = nawMinifiedTemplateSplit[l].trim();
-                       nawConcat = nawConcat + trimmed;
-               }
-
-               nawFinalTemplate = "\t" + "this." + nawTemplateName + "=" + "'" + nawConcat + "';";
-               nawFinalTemplates = nawFinalTemplates + nawFinalTemplate + "\n";
+           for(var l in nawMinifiedTemplateSplit){
+               var nawTrimmed = nawMinifiedTemplateSplit[l].trim();
+                   nawConcat = nawConcat + nawTrimmed;
            }
+
+           nawFinalTemplate = "\t" + "this." + nawTemplateName + " = " + "'" + nawConcat + "';";
+           nawFinalTemplates = nawFinalTemplates + nawFinalTemplate + "\n";
        });
 
        var nawImDoneWithThis = nawFunctionStart + className + nawFunctionMiddle + nawFinalTemplates + nawFunctionEnd;
