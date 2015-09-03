@@ -65,7 +65,9 @@ grunt.initConfig({
           options: {
               src: 'src/**/*.html',
               dest: 'dist/templates.js',
-              className: "templates"
+              className: "templates",
+              moduleName: "module1",
+              valueName: "value1"
           }
       }
   }
@@ -105,6 +107,7 @@ Type: `String`
 User defined angular value name.
 
 # Release History:
+- 2015-09-03 v0.0.5 Documentation is hard
 - 2015-09-03 v0.0.4 Added self calling function wrapper and made an angular module and value. Replaced hard carded values with user option values
 - 2015-09-03 v0.0.3 Fixed case where folders were inside folders and the template name contained `/`, which errored out in jshint.
 - 2015-09-03 v0.0.2 Refactored code to remove an if statement that wasn't needed and logic that could instead be solved with indexOf statements.
